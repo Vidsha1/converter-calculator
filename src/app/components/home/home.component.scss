@@ -1,0 +1,127 @@
+.wrap
+{
+    // padding: 30px;
+    min-height: 40px !important;
+    //background-color: #ffff;
+    border-radius: 0;
+    display: flex;
+}
+.left{
+     
+    padding-left:10%;
+    padding-right:5%;
+    padding-top:5%;
+    padding-bottom: 5%;
+    
+  
+}
+.right{
+
+    padding-right:10%;
+    padding-left:5%;
+    padding-top:5%;
+    padding-bottom: 5%;
+    
+}
+
+.card-divider-right
+{
+    
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.1), 0 1px 6px rgba(0, 0, 0, 0.23);
+    border: 2px solid #0098DB;
+    margin-left:0.5rem;
+    min-height: 50vh;
+    cursor: pointer;
+}
+
+.card-divider-left
+{
+    
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.1), 0 1px 6px rgba(0, 0, 0, 0.23);
+    border: 2px solid #0098DB;
+    margin-right:0.5rem;
+    min-height: 50vh;
+    cursor: pointer;
+}
+
+.mat-card-title
+{
+  margin-top:0.5rem !important;
+  margin-left:9rem !important;
+  font-size: larger;
+}
+.mat-card-md-image {
+    width: 112px;
+    height: 112px;
+    margin-left:auto;
+    display: block;
+    margin-right:auto;
+
+}
+ul {
+    list-style: none;
+   
+  }
+  li {
+    padding-left: 1.3em;
+  }
+  .bi-check-circle-fill
+  {
+    margin:0.5rem;
+  }
+
+@media (max-width: 768px) {
+    .mat-card-md-image {
+        width: 112px !important;
+        height: 112px !important;
+        margin-left:auto;
+        display: block;
+        margin-right:auto;
+    }
+    .wrap{
+      display: grid;
+    }
+    .mat-card-title{
+      margin-left:5rem !important;
+    }
+   .card-divider-left{
+     margin-right:0;
+   }
+   .card-divider-right{
+    margin-left:0;
+    }
+    .left{
+      padding:5%
+    }
+    .right{
+      padding:5%
+    }
+  }
+  @media (max-width: 1024px) {
+    .mat-card-md-image {
+        width: 112px !important;
+        height: 112px !important;
+        margin-left:auto;
+        display: block;
+        margin-right:auto;
+    }
+    .mat-card-title{
+      margin-left:3rem !important;
+    }
+    .wrap{
+      display: grid;
+    }
+    .left{
+      padding:5%
+    }
+    .right{
+      padding:5%
+    }
+    .card-divider-left{
+      margin-right:0;
+    }
+    .card-divider-right{
+     margin-left:0;
+   }
+   
+  }

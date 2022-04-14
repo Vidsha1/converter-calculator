@@ -1,0 +1,78 @@
+<div class="adjusting-flex">
+  <div class="col-sm-12">
+    <div class="row" style="margin-right: unset; margin-left: unset">
+        <div class="col-sm-4">
+            <div
+            class="card currency-details-colums-adjustment-left"
+            style="height:100%"
+            >
+
+            <form [formGroup]="currencyForm" class="form-currency">
+                <mat-form-field>
+                    <mat-label>Select From Unit</mat-label>
+                    <mat-select formControlName="fromUnit"  >
+                      <mat-option (onSelectionChange)="removeValue(c)" *ngFor="let c of currency_list" [value]="c" >
+                        {{c}}
+                      </mat-option>
+                     
+                    </mat-select>
+                    <mat-error *ngIf="">
+                      You must make a selection
+                    </mat-error>
+                  </mat-form-field> 
+                  <br>
+                  <mat-form-field>
+                    <mat-label>Select To Unit</mat-label>
+                    <mat-select  formControlName="toUnit" >
+                      <mat-option  (onSelectionChange)="removeValue(c)" *ngFor="let c of currency_list" [value]="c">
+                        {{c}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field> 
+                  <br>
+                  <mat-form-field>
+                  <mat-label>Amount</mat-label>
+                  <input  formControlName="amount"  type="number" matInput placeholder="Enter Amount Eg:200.00">
+                  <mat-error *ngIf="">
+                    You must make a selection
+                  </mat-error>
+                  </mat-form-field>
+                  <br>
+                <span style="margin-bottom:1rem">
+                <button mat-raised-button class="primary-button" (click)="finalConversion()">Submit</button>
+                 </span>
+                 
+                 <div class="inner-container" *ngIf="result" >
+                  <p class="p-header"> Conversion Results</p>
+                    <span>
+                      {{amt}}{{fromValue}}= {{result | number}}{{toValue}}
+                    </span>
+                 </div>
+            </form>    
+           </div>
+           
+        </div>
+          <div class="col-sm-8">
+           <div class="card currency-details-colums-adjustment-right" style="height:100%">
+            
+                <mat-toolbar>
+                  <div class="col-sm-8">
+                  <h2>Historic Data ( Base: EUR )</h2>
+                </div>
+                <div class="col-sm-4">
+                  <span style="left:0">  
+                    <p-calendar [(ngModel)]="filterDate" 
+                    [maxDate]="maxDate" [showIcon]="true"
+                    icon="pi pi-calendar"
+                     inputId="icon"></p-calendar>
+                </span>
+              </div>
+                </mat-toolbar>
+                <div class="chart flex">
+                <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+                </div>
+            </div>
+           </div>
+          </div>
+        </div>
+    </div>
