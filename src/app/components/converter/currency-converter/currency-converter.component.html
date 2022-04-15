@@ -16,7 +16,7 @@
                       </mat-option>
                      
                     </mat-select>
-                    <mat-error *ngIf="">
+                    <mat-error *ngIf="currencyForm.controls['fromUnit'].hasError('required');">
                       You must make a selection
                     </mat-error>
                   </mat-form-field> 
@@ -28,18 +28,24 @@
                         {{c}}
                       </mat-option>
                     </mat-select>
+                    <mat-error *ngIf="currencyForm.controls['toUnit'].hasError('required');">
+                      You must make a selection
+                    </mat-error>
                   </mat-form-field> 
                   <br>
                   <mat-form-field>
                   <mat-label>Amount</mat-label>
-                  <input  formControlName="amount"  type="number" matInput placeholder="Enter Amount Eg:200.00">
-                  <mat-error *ngIf="">
-                    You must make a selection
+                  <input  formControlName="amount"  min=1 type="number" matInput placeholder="Enter Amount Eg:200.00">
+                  <mat-error *ngIf="currencyForm.controls['amount'].hasError('required');">
+                    You must enter some value
+                  </mat-error>
+                  <mat-error *ngIf="currencyForm.controls['amount'].hasError('min');">
+                    You must enter Positive Value
                   </mat-error>
                   </mat-form-field>
                   <br>
                 <span style="margin-bottom:1rem">
-                <button mat-raised-button class="primary-button" (click)="finalConversion()">Submit</button>
+                <button mat-raised-button class="primary-button" [disabled]="!currencyForm.valid" (click)="finalConversion()">Submit</button>
                  </span>
                  
                  <div class="inner-container" *ngIf="result" >

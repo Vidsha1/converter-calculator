@@ -17,6 +17,9 @@
                         {{c.viewValue}}
                       </mat-option>
                     </mat-select>
+                    <mat-error *ngIf="lengthForm.controls['fromUnit'].hasError('required');">
+                      You must enter some value
+                    </mat-error>
                   </mat-form-field> 
                   <br>
                   <mat-form-field>
@@ -26,15 +29,25 @@
                         {{c.viewValue}}
                       </mat-option>
                     </mat-select>
+                    <mat-error *ngIf="lengthForm.controls['toUnit'].hasError('required');">
+                      You must enter some value
+                    </mat-error>
                   </mat-form-field> 
                   <br>
                   <mat-form-field>
                   <mat-label>Amount</mat-label>
                   <input  formControlName="amount" type="number" matInput placeholder="Enter Amount Eg:200.00">
+                  <mat-error *ngIf="lengthForm.controls['amount'].hasError('required');">
+                    You must enter some value
+                  </mat-error>
+                  <mat-error *ngIf="lengthForm.controls['amount'].hasError('min');">
+                    You must enter Positive Value
+                  </mat-error>
                   </mat-form-field>
                   <br>
                 <span style="margin-bottom:1rem">
-                <button mat-raised-button class="primary-button" (click)="finalConversion()">Submit</button>
+                <button mat-raised-button class="primary-button" [disabled]="!lengthForm.valid"
+                (click)="finalConversion()">Submit</button>
                  </span>
                  <div class="inner-container" *ngIf="result">
                   <p class="p-header"> Conversion Results</p>
@@ -63,23 +76,34 @@
                 <mat-label>New Unit Name</mat-label>
                 <input formControlName="newUnitName" 
                  type="text" matInput placeholder="eg: Meter">
+                 <mat-error *ngIf="newLengthForm.controls['newUnitName'].hasError('required');">
+                  You must enter Some Unit Name
+                </mat-error>
               </mat-form-field>
               </div>
               <div class="col-sm-3">
               <mat-form-field>
                 <mat-label>New Unit</mat-label>
                 <input  formControlName="newUnit" type="text" matInput placeholder="eg:mtr">
-                
+                <mat-error *ngIf="newLengthForm.controls['newUnit'].hasError('required');">
+                  You must enter Some Unit Name
+                </mat-error>
               </mat-form-field>
               </div>
               <div class="col-sm-3">
                 <mat-form-field>
                   <mat-label>Conversion value (mtr)</mat-label>
                   <input formControlName="conversionValue" type="text" matInput placeholder="eg:100cm = 1mtr">
+                  <mat-error *ngIf="newLengthForm.controls['conversionValue'].hasError('required');">
+                    You must enter some value
+                  </mat-error>
+                  <mat-error *ngIf="newLengthForm.controls['conversionValue'].hasError('min');">
+                    You must enter Positive Value
+                  </mat-error>
                 </mat-form-field>
                 </div>
               <div class="col-sm-3">
-                  <button mat-raised-button class="primary-button" (click)="submitNewUnit()">Submit</button>
+                  <button mat-raised-button class="primary-button" [disabled]="!newLengthForm.valid" (click)="submitNewUnit()">Submit</button>
                   <button mat-raised-button class="secondary-button" style="margin:1rem" (click)="cancelAction()">Cancel</button>
               </div>
             </div>

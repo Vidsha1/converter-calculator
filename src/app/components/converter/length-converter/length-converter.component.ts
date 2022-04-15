@@ -28,17 +28,24 @@ export class LengthConverterComponent implements OnInit {
     this.lengthForm = fb.group({
       fromUnit: ['', [Validators.required]],
       toUnit: ['', [Validators.required]],
-      amount:['',[Validators.required]]
+      amount:['',[Validators.required,Validators.min(1)]]
     })
     this.newLengthForm=fb.group({
       newUnit:['',[Validators.required]],
       newUnitName:['',[Validators.required]],
-      conversionValue:['',[Validators.required]]
+      conversionValue:['',[Validators.required,Validators.min(1)]]
     })
    }
 
   ngOnInit(): void {
    this.length_list=this.lengthService.lengthUnit;
+  }
+  get f() {
+    return this.lengthForm.controls;
+  }
+  get fControl()
+  {
+    return this.newLengthForm.controls;
   }
   toggle()
   {
@@ -76,6 +83,7 @@ export class LengthConverterComponent implements OnInit {
    /**Convert destUnit  to final amt */
    finalConversion()
    {
+    
       this.baseConversion();
       this.destConversion();
       if(this.baseConvertedValue!='' && this.dstConvertedValue!='')

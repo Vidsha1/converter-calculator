@@ -36,7 +36,7 @@ export class CurrencyConverterComponent implements OnInit {
     this.currencyForm = this.fb.group({
       fromUnit: ['', [Validators.required]],
       toUnit: ['', [Validators.required]],
-      amount:['',[Validators.required]]
+      amount:['',[Validators.required, Validators.min(1)]]
     })
     //getting currency list
     this.currencyService.getAllCurrency().subscribe((data:any)=>
@@ -98,10 +98,13 @@ export class CurrencyConverterComponent implements OnInit {
       })
     }
 
-    get f(): { [key: string]: AbstractControl } {
+    get f() {
       return this.currencyForm.controls;
     }
-  
+     /* Handle form errors in Angular 8 */
+     public errorHandling = (control: string, error: string) => {
+        return this.currencyForm.controls[control].hasError(error);
+      }
    //remove Value selected
    removeValue(e:any)
    {
@@ -154,6 +157,7 @@ export class CurrencyConverterComponent implements OnInit {
    /**Convert destUnit  to final amt */
    finalConversion()
    {
+     if(this.currencyForm.valid)
       this.baseConversion();
       this.destConversion();
       if(this.baseConvertedValue!='' && this.dstConvertedValue!='')
