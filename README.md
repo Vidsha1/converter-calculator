@@ -4,6 +4,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Description
 1.This project is representation of different currencies and unit conversion.
+
+
 ~ Currency Conversion :
    1. It holds the currencies parameter from "https://exchangeratesapi" API `http://api.exchangeratesapi.io/v1/latest?access_key=${this.key}` here key is your free API         key generated from the website.
    2. It also represents the historical trends for base EUR for selected date which was fetch from API : 
