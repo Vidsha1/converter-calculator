@@ -1,6 +1,4 @@
-
-.adjusting-flex
-{
+.adjusting-flex {
   width: 100%;
   height: auto;
   margin: 0 auto 0 auto;
@@ -9,64 +7,66 @@
   position: relative;
 }
 
-.mat-toolbar{
-  box-shadow: 5px 10px #ffff;
-  border-bottom: 1px solid black;
+.historic-header {
+  font-size: 16px;
+  padding-top: 18px;
+  padding-left: 10px;
+  font-weight: bold;
+  margin: 0;
 }
-.currency-details-colums-adjustment-left {
-    margin-right: 15px;
-    flex:1 1 auto;
-  }
-  
-  .form-currency
-  {
-      margin:2rem;
-  }
-  .graph-card
-  {
-    border:1px solid black;
-  }
-//  .p-header
-//  {
-//    background-color:rgb(16, 197, 43);
-//    color:#ffff;
-//    margin:0;
-//  }
-  .inner-container
-  {
-     // border:1px solid rgb(6, 138, 25);
-      border:1px solid black;
-      margin-top:3rem;
-      border-radius: 3px;
-      text-align: center;
-  }
 
-  //date picker css
-  .date-button
-  {
-    width:8rem;
-    font-size:medium;
-    background-color: #f7f7f7;
-    border:1px solid #0098db;
-    text-align: center;
-    border-radius:5px 5px;
-    left:0;
-    display: inline;
-  }
-  .date-icon
-  {
-    color:#0098db;
-    
-  }
-  //loader starts
+.graph-header {
+  box-shadow: 1px 1px darkgrey;
+  vertical-align: middle;
+  background-color: #f7f7f7;
+
+}
+
+.currency-details-colums-adjustment-left {
+
+  flex: 1 1 auto;
+}
+
+.form-currency {
+  margin: 2rem;
+}
+
+.graph-card {
+  border: 1px solid black;
+}
+
+.inner-container {
+
+  border: 1px solid black;
+  margin-top: 3rem;
+  border-radius: 3px;
+  text-align: center;
+}
+
+//date picker css
+.date-button {
+  width: 8rem;
+  font-size: medium;
+  background-color: #f7f7f7;
+  border-radius: 5px 5px;
+
+}
+
+.date-icon {
+  color: #0098db;
+  float: right;
+}
+
+//loader starts
 .center-aligned {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.spinnerClass{
+
+.spinnerClass {
   opacity: 1;
-  background:rgba(0,0,0,.288);
+  background: rgba(0, 0, 0, .288);
   position: absolute;
   top: 0;
   bottom: 0;
@@ -75,21 +75,101 @@
   z-index: 1000;
   pointer-events: auto;
   -webkit-tap-highlight-color: transparent;
-  transition: opacity .4s cubic-bezier(.25,.8,.25,1);
-  
+  transition: opacity .4s cubic-bezier(.25, .8, .25, 1);
+
 }
+
 //loader ends
 
-  @media (max-width: 768px) {
-    .currency-details-colums-adjustment-right {
-      margin-top: 15px;
-      flex:1 1 auto;
-    }
+@media (max-width: 768px) {
+  .col-sm-4 {
+    flex: 0 0 auto;
+    width: 33.33%;
   }
 
-  @media (max-width: 1024px) {
-    .currency-details-colums-adjustment-right {
-      margin-top: 15px;
-      flex:1 1 auto;
-    }
+  .currency-details-colums-adjustment-right {
+    flex: 1 1 auto;
   }
+
+  .col-sm-7 {
+    flex: 0 0 auto;
+    width: 58.33333333%;
+  }
+
+}
+
+@media (max-width: 1024px) {
+  .col-sm-4 {
+    flex: 0 0 auto;
+    width: 33.33%;
+  }
+
+  .currency-details-colums-adjustment-right {
+    flex: 1 1 auto;
+  }
+
+  .col-sm-7 {
+    flex: 0 0 auto;
+    width: 58.33333333%;
+  }
+}
+
+@media (max-width: 900px) and (min-width:576px) {
+  .col-sm-4 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .col-sm-8 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .col-sm-7 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .col-sm-5 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .currency-details-colums-adjustment-right {
+    flex: 1 1 auto;
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .col-sm-4 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .col-sm-8 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .col-sm-7 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .col-sm-5 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .historic-header {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .currency-details-colums-adjustment-right {
+    flex: 1 1 auto;
+    margin-top: 15px;
+  }
+}

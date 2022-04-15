@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'conversion/:id',
     component: ConverterComponent,
   },
-  
+
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
 

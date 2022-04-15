@@ -1,96 +1,93 @@
 <div class="adjusting-flex">
   <div class="col-sm-12">
     <div class="row" style="margin-right: unset; margin-left: unset">
-        <div class="col-sm-4">
-            <div
-            class="card currency-details-colums-adjustment-left"
-            style="height:100%"
-            >
+      <div class="col-sm-4">
+        <div class="card currency-details-colums-adjustment-left" style="height:100%">
 
-            <form [formGroup]="currencyForm" class="form-currency">
-                <mat-form-field>
-                    <mat-label>Select From Unit</mat-label>
-                    <mat-select formControlName="fromUnit"  >
-                      <mat-option (onSelectionChange)="removeValue(c)" *ngFor="let c of currency_list" [value]="c" >
-                        {{c}}
-                      </mat-option>
-                     
-                    </mat-select>
-                    <mat-error *ngIf="currencyForm.controls['fromUnit'].hasError('required');">
-                      You must make a selection
-                    </mat-error>
-                  </mat-form-field> 
-                  <br>
-                  <mat-form-field>
-                    <mat-label>Select To Unit</mat-label>
-                    <mat-select  formControlName="toUnit" >
-                      <mat-option  (onSelectionChange)="removeValueTo(c)" *ngFor="let c of currency_list_new" [value]="c">
-                        {{c}}
-                      </mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="currencyForm.controls['toUnit'].hasError('required');">
-                      You must make a selection
-                    </mat-error>
-                  </mat-form-field> 
-                  <br>
-                  <mat-form-field>
-                  <mat-label>Amount</mat-label>
-                  <input  formControlName="amount"  min=1 type="number" matInput placeholder="Enter Amount Eg:200.00">
-                  <mat-error *ngIf="currencyForm.controls['amount'].hasError('required');">
-                    You must enter some value
-                  </mat-error>
-                  <mat-error *ngIf="currencyForm.controls['amount'].hasError('min');">
-                    You must enter Positive Value
-                  </mat-error>
-                  </mat-form-field>
-                  <br>
-                <span style="margin-bottom:1rem">
-                <button mat-raised-button class="primary-button" [disabled]="!currencyForm.valid" (click)="finalConversion()">Submit</button>
-                 </span>
-                 
-                 <div class="inner-container" *ngIf="result" >
-                  <p class="p-header"> Conversion Results</p>
-                    <span>
-                      {{amt}}{{fromValue}}= {{result | number}}{{toValue}}
-                    </span>
-                 </div>
-            </form>    
-           </div>
-           
+          <form [formGroup]="currencyForm" class="form-currency">
+            <mat-form-field>
+              <mat-label>Select From Unit</mat-label>
+              <mat-select formControlName="fromUnit">
+
+                <mat-option (onSelectionChange)="removeValue(val)" *ngFor="let val of currency_list" [value]="val">
+                  {{val}}
+                </mat-option>
+
+              </mat-select>
+              <mat-error *ngIf="currencyForm.controls['fromUnit'].hasError('required');">
+                You must make a selection
+              </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <mat-label>Select To Unit</mat-label>
+              <mat-select formControlName="toUnit">
+                <mat-option (onSelectionChange)="removeValueTo(value)" *ngFor="let value of currency_list_new"
+                  [value]="value">
+                  {{value}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="currencyForm.controls['toUnit'].hasError('required');">
+                You must make a selection
+              </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <mat-label>Amount</mat-label>
+              <input formControlName="amount" min=1 type="number" matInput placeholder="Enter Amount Eg:200.00">
+              <mat-error *ngIf="currencyForm.controls['amount'].hasError('required');">
+                You must enter some value
+              </mat-error>
+              <mat-error *ngIf="currencyForm.controls['amount'].hasError('min');">
+                You must enter Positive Value
+              </mat-error>
+            </mat-form-field>
+            <br>
+            <span style="margin-bottom:1rem">
+              <button mat-raised-button class="primary-button" [disabled]="!currencyForm.valid"
+                (click)="finalConversion()">Submit</button>
+            </span>
+
+            <div class="inner-container" *ngIf="result">
+              <p class="p-header"> Conversion Results</p>
+              <span>
+                {{amt}}{{fromValue}}= {{result | number}}{{toValue}}
+              </span>
+            </div>
+          </form>
         </div>
-          <div class="col-sm-8">
-           <div class="card currency-details-colums-adjustment-right" >
-              
-                <mat-toolbar>
-                  <div class="col-sm-9">
-                  <h2>Historic Data ( Base: EUR )</h2>
-                </div>
-                <div class="col-sm-3">
-                  <span>  
-                  
-                    <input matInput readonly
-                    class="date-button"
-                    [matDatepicker]="pick2" 
-                    [max]="maxDate" 
-                    [(ngModel)]="filterDate"
-                    (dateChange)="handleDateChange($event)"
-                    >
+
+      </div>
+      <div class="col-sm-8">
+        <div class="card currency-details-colums-adjustment-right">
+          <div class="graph-header">
+            <div class="row">
+
+              <div class="col-sm-7">
+
+                <p class="historic-header">Historical Data ( Currency: EURO )</p>
+
+              </div>
+              <div class="col-sm-5">
+                <span>
+                  <mat-form-field>
+                    <input matInput readonly class="date-button" [matDatepicker]="pick2" [max]="maxDate"
+                      [(ngModel)]="filterDate" (dateChange)="handleDateChange($event)">
                     <mat-datepicker-toggle class="date-icon" matSuffix [for]="pick2">
                     </mat-datepicker-toggle>
                     <mat-datepicker #pick2></mat-datepicker>
-                   
+                  </mat-form-field>
+
                 </span>
               </div>
-                </mat-toolbar>
-                <div class="chart flex">
-                  <app-loading-spinner class="spinnerClass center-aligned" 
-                  *ngIf="isLoading"></app-loading-spinner>
-                <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
-                </div>
             </div>
-           </div>
+          </div>
+          <div class="chart flex">
+            <app-loading-spinner class="spinnerClass center-aligned" *ngIf="isLoading"></app-loading-spinner>
+            <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
           </div>
         </div>
-       
-        
+      </div>
     </div>
+  </div>
+</div>

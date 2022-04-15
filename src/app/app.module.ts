@@ -28,8 +28,6 @@ import { MessageService } from 'primeng/api';
 import { MatNativeDateModule } from '@angular/material/core';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

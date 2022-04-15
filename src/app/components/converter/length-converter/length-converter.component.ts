@@ -10,126 +10,114 @@ import { LengthService } from './length.service';
 })
 export class LengthConverterComponent implements OnInit {
 
-  length_list:any= [];
-  newLengthForm:FormGroup=new FormGroup({});
+  length_list: any = [];
+  newLengthForm: FormGroup = new FormGroup({});
   lengthForm: FormGroup = new FormGroup({});
-  result:any;
-  newUnit:boolean=false;
-  match:boolean=false;
+  result: any;
+  newUnit: boolean = false;
+  match: boolean = false;
   basicData: any;
   basicOptions: any;
-  baseConvertedValue:any;
-  dstConvertedValue:any;
-  amt:any;
-  fromValue:any;
-  toValue:any;
+  baseConvertedValue: any;
+  dstConvertedValue: any;
+  amt: any;
+  fromValue: any;
+  toValue: any;
 
-  constructor(private fb: FormBuilder, private lengthService:LengthService,private messageService: MessageService) {
+  constructor(private fb: FormBuilder, private lengthService: LengthService, private messageService: MessageService) {
     this.lengthForm = fb.group({
       fromUnit: ['', [Validators.required]],
       toUnit: ['', [Validators.required]],
-      amount:['',[Validators.required,Validators.min(1)]]
+      amount: ['', [Validators.required, Validators.min(1)]]
     })
-    this.newLengthForm=fb.group({
-      newUnit:['',[Validators.required]],
-      newUnitName:['',[Validators.required]],
-      conversionValue:['',[Validators.required,Validators.min(1)]]
+    this.newLengthForm = fb.group({
+      newUnit: ['', [Validators.required]],
+      newUnitName: ['', [Validators.required]],
+      conversionValue: ['', [Validators.required, Validators.min(1)]]
     })
-   }
+  }
 
   ngOnInit(): void {
-   this.length_list=this.lengthService.lengthUnit;
+    this.length_list = this.lengthService.lengthUnit;
   }
   get f() {
     return this.lengthForm.controls;
   }
-  get fControl()
-  {
+  get fControl() {
     return this.newLengthForm.controls;
   }
-  toggle()
-  {
-    this.newUnit=!this.newUnit;
-    console.log(this.newUnit)
+  toggle() {
+    this.newUnit = !this.newUnit;
+
   }
 
   /**Convert any from unit to base value i.e meter */
-  baseConversion()
-  {
-    this.length_list.forEach((element:any) => {
-      if(this.lengthForm.value.fromUnit.toLowerCase() == element.value.toLowerCase())
-        {
-          console.log("i am base conversion")
-          this.baseConvertedValue=element.conversionValue;
-        }
+  baseConversion() {
+    this.length_list.forEach((element: any) => {
+      if (this.lengthForm.value.fromUnit.toLowerCase() == element.value.toLowerCase()) {
+
+        this.baseConvertedValue = element.conversionValue;
+      }
     });
-    
-    console.log(this.baseConvertedValue);
+
   }
-   /**Convert basevalueConverted value to required Unit value  */
-   destConversion()
-   {
-    this.length_list.forEach((element:any) => {
+  /**Convert basevalueConverted value to required Unit value  */
+  destConversion() {
+    this.length_list.forEach((element: any) => {
 
-      if(this.lengthForm.value.toUnit.toLowerCase() == element.value.toLowerCase())
-        {
-          console.log("i am in dest conversion");
-          console.log(element.conversionValue);
-          this.dstConvertedValue=(this.baseConvertedValue)/(element.conversionValue);
-        }
+      if (this.lengthForm.value.toUnit.toLowerCase() == element.value.toLowerCase()) {
+        this.dstConvertedValue = (this.baseConvertedValue) / (element.conversionValue);
+      }
     });
-    console.log(this.dstConvertedValue)
-   }
-   /**Convert destUnit  to final amt */
-   finalConversion()
-   {
-    
-      this.baseConversion();
-      this.destConversion();
-      if(this.baseConvertedValue!='' && this.dstConvertedValue!='')
-      this.result=this.lengthForm.value.amount*this.dstConvertedValue;
-      console.log(this.result);
-      this.amt=this.lengthForm.value.amount;
-      this.fromValue=this.lengthForm.value.fromUnit;
-      this.toValue=this.lengthForm.value.toUnit;
-   }
 
-    /**Add new unit */
-  submitNewUnit()
-  {
-    if(this.valueCheck())
-    {
-       this.length_list.push(
-        {value: this.newLengthForm.value.newUnitName, viewValue: this.newLengthForm.value.newUnit,
-           conversionValue: this.newLengthForm.value.conversionValue}
-       )
-       this.messageService.add(
+  }
+  /**Convert destUnit  to final amt */
+  finalConversion() {
+
+    this.baseConversion();
+    this.destConversion();
+    if (this.baseConvertedValue != '' && this.dstConvertedValue != '')
+      this.result = this.lengthForm.value.amount * this.dstConvertedValue;
+    this.amt = this.lengthForm.value.amount;
+    this.fromValue = this.lengthForm.value.fromUnit;
+    this.toValue = this.lengthForm.value.toUnit;
+  }
+
+  /**Add new unit */
+  submitNewUnit() {
+    if (this.valueCheck()) {
+      this.length_list.push(
         {
-        severity:'success', summary:'Success Message', detail:'New Unit is added successfully'
+          value: this.newLengthForm.value.newUnitName, viewValue: this.newLengthForm.value.newUnit,
+          conversionValue: this.newLengthForm.value.conversionValue
         }
       )
-       console.log(this.length_list);
-    }
-    else{
       this.messageService.add(
         {
-        severity:'info', summary:'Information Message', detail:'Kindly Add New Unit as the input given already exist'
+          severity: 'success', summary: 'Success Message', detail: 'New unit is added successfully,now you can do conversion for newly added unit'
         }
       )
-    } 
+      this.newUnit = false;
+      this.newLengthForm.reset();
+    }
+    else {
+      this.messageService.add(
+        {
+          severity: 'info', summary: 'Information Message', detail: 'Kindly Add New Unit as the input given already exist'
+        }
+      )
+    }
+
+
   }
 
-  valueCheck() 
-  {
-    for(var i=0;i<this.length_list.length;i++)
-    {
-      if(this.newLengthForm.value.newUnitName.toLowerCase()==this.length_list[i].value.toLowerCase())
-      return false;
+  valueCheck() {
+    for (var i = 0; i < this.length_list.length; i++) {
+      if (this.newLengthForm.value.newUnitName.toLowerCase() == this.length_list[i].value.toLowerCase())
+        return false;
     }
     return true;
   }
-  cancelAction()
-  {
-    this.newUnit=false;
-  }
+
+
 }

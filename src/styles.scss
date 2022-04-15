@@ -9,29 +9,24 @@
 .main-container {
     padding: 2% !important;
     background: #F7F7F7;
-    flex:1 1 auto;
-   
+    
   }
   .container-fluid {
-    margin-top: 5%;
-    margin-bottom: 5%;
     border: 1px solid black;
-    padding-left:15%;
-    padding-right:15%;
-    overflow: hidden;
-    flex:1 1 auto;
+    display: grid;
+   
   }
   .converter-container {
     padding: 2% !important;
     background: #F7F7F7;
     height: auto;
-    flex:1 1 auto;
+   
   }
   .converter-fluid {
     padding-left: 0px;
     padding-right: 0px;
     margin-top: 0%;
-    flex:1 1 auto;
+   
   }
 //breadcrumb
 .links {
@@ -103,7 +98,7 @@
     } 
    
   }
-
+ 
 .mat-tab-label{
   width: auto;
   font-weight: bold;

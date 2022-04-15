@@ -2,32 +2,32 @@
   <!--navigation starts-->
   <div class="navigation-area">
     <div class="">
-        <span class="breadcrum"> 
-          <a class="links" routerLink="/home">Home </a> 
-           /Conversion-Calculator </span>
+      <span class="breadcrum">
+        <a class="links" routerLink="/home">Home</a>
+        / Conversion-Calculator </span>
     </div>
   </div>
-<!--navigation ends-->
-<div class="event-div">
+  <!--navigation ends-->
+  <div class="event-div">
     <div class="wrap">
       <div class="row">
         <div class="col-sm-12">
           <div class="card">
 
-          <mat-tab-group (selectedTabChange)="onTabClick($event)" [selectedIndex]="active">
-            <mat-tab label="Currency Converter">
-            <span style="margin:1rem">
-             <app-currency-converter></app-currency-converter>
-            </span>
-            </mat-tab>
-            <mat-tab label="Length Converter">
-              <span style="margin:1rem">
-              <app-length-converter ></app-length-converter>
-              </span>
-            </mat-tab> 
-          </mat-tab-group>
-      </div>
+            <mat-tab-group (selectedTabChange)="onTabClick($event)" [selectedIndex]="active">
+              <mat-tab label="Currency Converter">
+                <span style="margin:1rem">
+                  <app-currency-converter></app-currency-converter>
+                </span>
+              </mat-tab>
+              <mat-tab label="Length Converter">
+                <span style="margin:1rem">
+                  <app-length-converter></app-length-converter>
+                </span>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
       </div>
     </div>
-</div>
-</div>
+  </div>

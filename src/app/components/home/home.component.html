@@ -1,37 +1,45 @@
-<div class="container-fluid main-container">
-    <div class="wrap">
-     <div class="left">
-        <mat-card class="card-divider-left" (click)="conversionCalc('currency')">
-            <span class="currency-image"><img mat-card-md-image  src="./assets/currency.png" ></span>
-            <mat-card-title><b>Currency Conversion</b></mat-card-title>
-            <br>
-            <mat-card-content>
-                <ul>
-                <li><i class="bi bi-check-circle-fill"></i>This Module helps to convert currency from one to another.<br>
-                    Eg: Consider if it is 100 ZAR to be converted to USD</li>  
-                <li><i class="bi bi-check-circle-fill"></i>It also states the historic trends</li>
-                
-                </ul>  
-            
-            </mat-card-content>
-        </mat-card>
-    </div>
-    <div class="right">
-    <mat-card class="card-divider-right" (click)="conversionCalc('length')">
-        <span> <img mat-card-md-image class="currency-image" src="./assets/length.png" ></span>
-        <mat-card-title><b>Length Conversion</b></mat-card-title>
-        <br>
-        <mat-card-content>
-            <ul>
-                
-                 <li><i class="bi bi-check-circle-fill"></i>This Module helps to convert length unit from one to another.
-                     <br>Eg: Consider if it is 100 Metre to be converted to Centi-Meter</li> 
-                 <li><i class="bi bi-check-circle-fill"></i>It also states the historic trends</li>
-                 
-            </ul>  
-        </mat-card-content>
-       
-    </mat-card>
-    </div>
+<div class="d-flex justify-content-between small-screen" style="margin-top: 2rem">
+    <div class="container-fluid main-container">
+
+        <div class="wrap">
+            <div class="left">
+                <mat-card class="card-divider-left" (click)="conversionCalc('currency')">
+                    <span class="currency-image"><img mat-card-md-image src="./assets/currency.png"></span>
+                    <mat-card-title><b>Currency Conversion</b></mat-card-title>
+                    <br>
+                    <mat-card-content>
+                        <ul>
+                            <li><i class="bi bi-check-circle-fill"></i>This Module helps to convert currency from one to
+                                another.</li>
+                            <li><i class="bi bi-check-circle-fill"></i>E.g. Consider if it is 100 ZAR to be converted to
+                                USD.</li>
+                            <li><i class="bi bi-check-circle-fill"></i>It also states the historic trends.</li>
+
+                        </ul>
+
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="right">
+                <mat-card class="card-divider-right" (click)="conversionCalc('length')">
+                    <span> <img mat-card-md-image class="currency-image" src="./assets/length.png"></span>
+                    <mat-card-title><b>Length Conversion</b></mat-card-title>
+                    <br>
+                    <mat-card-content>
+                        <ul>
+
+                            <li><i class="bi bi-check-circle-fill"></i>This Module helps to convert length unit from one
+                                to another.</li>
+                            <li><i class="bi bi-check-circle-fill"></i>E.g. Consider if it is 100 Metre to be converted
+                                to Centi-Meter.</li>
+                            <li><i class="bi bi-check-circle-fill"></i>It also gives you feature of adding the new unit.
+                            </li>
+
+                        </ul>
+                    </mat-card-content>
+
+                </mat-card>
+            </div>
+        </div>
     </div>
 </div>

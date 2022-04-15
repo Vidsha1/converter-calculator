@@ -1,116 +1,112 @@
-<p-toast></p-toast>
+<p-toast [baseZIndex]="10000"></p-toast>
 
-<div class="adjusting-flex">
+<div class="d-flex justify-content-between small-screen">
   <div class="col-sm-12">
     <div class="row" style="margin-right: unset; margin-left: unset">
-        <div class="col-sm-4">
-            <div
-            class="card length-details-colums-adjustment-left"
-            style="height: 100%;"
-            >
+      <div class="col-sm-4">
+        <div class="card length-details-colums-adjustment-left" style="height: 100%;">
 
-            <form [formGroup]="lengthForm" class="form-length" >
-                <mat-form-field>
-                    <mat-label>Select From Unit</mat-label>
-                    <mat-select formControlName="fromUnit">
-                      <mat-option *ngFor="let c of length_list" [value]="c.value">
-                        {{c.viewValue}}
-                      </mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="lengthForm.controls['fromUnit'].hasError('required');">
-                      You must enter some value
-                    </mat-error>
-                  </mat-form-field> 
-                  <br>
-                  <mat-form-field>
-                    <mat-label>Select To Unit</mat-label>
-                    <mat-select  formControlName="toUnit">
-                      <mat-option *ngFor="let c of length_list" [value]="c.value">
-                        {{c.viewValue}}
-                      </mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="lengthForm.controls['toUnit'].hasError('required');">
-                      You must enter some value
-                    </mat-error>
-                  </mat-form-field> 
-                  <br>
-                  <mat-form-field>
-                  <mat-label>Amount</mat-label>
-                  <input  formControlName="amount" type="number" matInput placeholder="Enter Amount Eg:200.00">
-                  <mat-error *ngIf="lengthForm.controls['amount'].hasError('required');">
-                    You must enter some value
-                  </mat-error>
-                  <mat-error *ngIf="lengthForm.controls['amount'].hasError('min');">
-                    You must enter Positive Value
-                  </mat-error>
-                  </mat-form-field>
-                  <br>
-                <span style="margin-bottom:1rem">
-                <button mat-raised-button class="primary-button" [disabled]="!lengthForm.valid"
+          <form [formGroup]="lengthForm" class="form-length">
+            <mat-form-field>
+              <mat-label>Select From Unit</mat-label>
+              <mat-select formControlName="fromUnit">
+                <mat-option *ngFor="let c of length_list" [value]="c.value">
+                  {{c.viewValue}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="lengthForm.controls['fromUnit'].hasError('required');">
+                You must enter some value
+              </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <mat-label>Select To Unit</mat-label>
+              <mat-select formControlName="toUnit">
+                <mat-option *ngFor="let c of length_list" [value]="c.value">
+                  {{c.viewValue}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="lengthForm.controls['toUnit'].hasError('required');">
+                You must enter some value
+              </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <mat-label>Amount</mat-label>
+              <input formControlName="amount" type="number" matInput placeholder="Enter Amount Eg:200.00">
+              <mat-error *ngIf="lengthForm.controls['amount'].hasError('required');">
+                You must enter some value
+              </mat-error>
+              <mat-error *ngIf="lengthForm.controls['amount'].hasError('min');">
+                You must enter Positive Value
+              </mat-error>
+            </mat-form-field>
+            <br>
+            <span style="margin-bottom:1rem">
+              <button mat-raised-button class="primary-button" [disabled]="!lengthForm.valid"
                 (click)="finalConversion()">Submit</button>
-                 </span>
-                 <div class="inner-container" *ngIf="result">
-                  <p class="p-header"> Conversion Results</p>
-                  <span>
-                    {{amt}}{{fromValue}}= {{result | number}}{{toValue}}
-                  </span>
-                 </div>
-            </form>    
-           </div>
-           
-        </div>
-          <div class="col-sm-8">
-           <div class="card length-details-colums-adjustment-right" style="height:100%;">
-            <span class="length-image"><img mat-card-md-image  src="./assets/length.png" ></span>
-            <div class="add-form">
+            </span>
+            <div class="inner-container" *ngIf="result">
+              <p class="p-header"> Conversion Results</p>
               <span>
-                <p><b>Do you wish to add a new unit for conversion?</b></p>
+                {{amt}}{{fromValue}}= {{result | number}}{{toValue}}
               </span>
-              <button mat-raised-button class="primary-button" (click)="toggle()" [disabled]="newUnit" >Yes</button>
             </div>
-            <div class="newUnit" *ngIf="newUnit">
+          </form>
+        </div>
+
+      </div>
+      <div class="col-sm-8">
+        <div class="card length-details-colums-adjustment-right" style="height:100%;">
+          <span class="length-image"><img mat-card-md-image src="./assets/length.png"></span>
+          <div class="add-form">
+            <span>
+              <p><b>Do you wish to add a new unit for conversion?</b></p>
+            </span>
+            <button mat-raised-button class="primary-button" (click)="toggle()" [disabled]="newUnit">Yes</button>
+          </div>
+          <div class="newUnit" *ngIf="newUnit">
             <form [formGroup]="newLengthForm" class="new-length">
-            <div class="row" style="margin-left:1rem" >
-              <div class="col-sm-3">
-              <mat-form-field>
-                <mat-label>New Unit Name</mat-label>
-                <input formControlName="newUnitName" 
-                 type="text" matInput placeholder="eg: Meter">
-                 <mat-error *ngIf="newLengthForm.controls['newUnitName'].hasError('required');">
-                  You must enter Some Unit Name
-                </mat-error>
-              </mat-form-field>
-              </div>
-              <div class="col-sm-3">
-              <mat-form-field>
-                <mat-label>New Unit</mat-label>
-                <input  formControlName="newUnit" type="text" matInput placeholder="eg:mtr">
-                <mat-error *ngIf="newLengthForm.controls['newUnit'].hasError('required');">
-                  You must enter Some Unit Name
-                </mat-error>
-              </mat-form-field>
-              </div>
-              <div class="col-sm-3">
-                <mat-form-field>
-                  <mat-label>Conversion value (mtr)</mat-label>
-                  <input formControlName="conversionValue" type="text" matInput placeholder="eg:100cm = 1mtr">
-                  <mat-error *ngIf="newLengthForm.controls['conversionValue'].hasError('required');">
-                    You must enter some value
-                  </mat-error>
-                  <mat-error *ngIf="newLengthForm.controls['conversionValue'].hasError('min');">
-                    You must enter Positive Value
-                  </mat-error>
-                </mat-form-field>
+              <div class="row" style="margin-left:1rem">
+                <div class="col-sm-3">
+                  <mat-form-field>
+                    <mat-label>New Unit Name</mat-label>
+                    <input formControlName="newUnitName" type="text" matInput placeholder="eg: Meter">
+                    <mat-error *ngIf="newLengthForm.controls['newUnitName'].hasError('required');">
+                      You must enter Some Unit Name
+                    </mat-error>
+                  </mat-form-field>
                 </div>
-              <div class="col-sm-3">
-                  <button mat-raised-button class="primary-button" [disabled]="!newLengthForm.valid" (click)="submitNewUnit()">Submit</button>
-                  <button mat-raised-button class="secondary-button" style="margin:1rem" (click)="cancelAction()">Cancel</button>
+                <div class="col-sm-3">
+                  <mat-form-field>
+                    <mat-label>New Unit</mat-label>
+                    <input formControlName="newUnit" type="text" matInput placeholder="eg:mtr">
+                    <mat-error *ngIf="newLengthForm.controls['newUnit'].hasError('required');">
+                      You must enter Some Unit Name
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-3">
+                  <mat-form-field>
+                    <mat-label>Conversion value (mtr)</mat-label>
+                    <input formControlName="conversionValue" type="text" matInput placeholder="eg:100cm = 1mtr">
+                    <mat-error *ngIf="newLengthForm.controls['conversionValue'].hasError('required');">
+                      You must enter some value
+                    </mat-error>
+                    <mat-error *ngIf="newLengthForm.controls['conversionValue'].hasError('min');">
+                      You must enter Positive Value
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-3">
+                  <button mat-raised-button class="primary-button" style="margin-top:0.5rem"
+                    [disabled]="!newLengthForm.valid" (click)="submitNewUnit()">Submit</button>
+                </div>
               </div>
-            </div>
             </form>
-           </div>
           </div>
         </div>
-    </div>
+      </div>
     </div>
   </div>
+</div>

@@ -7,14 +7,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  path:any;
-  constructor(private route:Router) { }
+  path: any;
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
   }
-  conversionCalc(e:string)
-  {
-    this.path=e;
-    this.route.navigate(['/conversion',e]);
+  conversionCalc(e: string) {
+    this.path = e;
+    this.route.navigate(['/conversion', e]);
   }
 }
