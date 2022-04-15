@@ -30,5 +30,10 @@ Please run the below steps for setting up code :
   2. ng add @angular/material
 Run `ng serve`/ 'npm start' for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
+## Snapshot
+![image](https://user-images.githubusercontent.com/86983802/163581983-4431c6bd-30c7-4c2a-ba70-19b93da05aa5.png)
+![image](https://user-images.githubusercontent.com/86983802/163582113-89446220-264e-450e-94b9-360c1f08491a.png)
+![image](https://user-images.githubusercontent.com/86983802/163582177-486b03e9-96ec-4ec2-b807-0fa9f89cda0f.png)
+
 
 
