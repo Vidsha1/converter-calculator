@@ -9,6 +9,7 @@
 .main-container {
     padding: 2% !important;
     background: #F7F7F7;
+    flex:1 1 auto;
    
   }
   .container-fluid {
@@ -18,17 +19,19 @@
     padding-left:15%;
     padding-right:15%;
     overflow: hidden;
-    
+    flex:1 1 auto;
   }
   .converter-container {
     padding: 2% !important;
     background: #F7F7F7;
     height: auto;
+    flex:1 1 auto;
   }
   .converter-fluid {
     padding-left: 0px;
     padding-right: 0px;
     margin-top: 0%;
+    flex:1 1 auto;
   }
 //breadcrumb
 .links {
@@ -111,26 +114,4 @@
 }
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
   background-color: #0098DB;
-}
-.pi-calendar
-{
-  margin-left:35rem;
-  color:#0098DB;
-
-}
-@media (max-width: 768px) {
-  .pi-calendar
-  {
-    margin-left:8rem;
-    color:#0098DB;
-
-  }
-}
-@media (max-width: 1024px) {
-  .pi-calendar
-  {
-    margin-left:1rem;
-    color:#0098DB;
-
-  }
 }

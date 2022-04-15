@@ -1,8 +1,5 @@
 .wrap
 {
-    // padding: 30px;
-    min-height: 40px !important;
-    //background-color: #ffff;
     border-radius: 0;
     display: flex;
 }
@@ -12,8 +9,6 @@
     padding-right:5%;
     padding-top:5%;
     padding-bottom: 5%;
-    
-  
 }
 .right{
 
@@ -30,7 +25,7 @@
     box-shadow: 0 1px 20px rgba(0, 0, 0, 0.1), 0 1px 6px rgba(0, 0, 0, 0.23);
     border: 2px solid #0098DB;
     margin-left:0.5rem;
-    min-height: 50vh;
+   // min-height: 50vh;
     cursor: pointer;
 }
 
@@ -40,7 +35,7 @@
     box-shadow: 0 1px 20px rgba(0, 0, 0, 0.1), 0 1px 6px rgba(0, 0, 0, 0.23);
     border: 2px solid #0098DB;
     margin-right:0.5rem;
-    min-height: 50vh;
+    // min-height: 50vh;
     cursor: pointer;
 }
 
@@ -86,9 +81,11 @@ ul {
     }
    .card-divider-left{
      margin-right:0;
+     height: auto;
    }
    .card-divider-right{
     margin-left:0;
+    height: auto;
     }
     .left{
       padding:5%
@@ -110,6 +107,7 @@ ul {
     }
     .wrap{
       display: grid;
+      
     }
     .left{
       padding:5%
@@ -119,9 +117,40 @@ ul {
     }
     .card-divider-left{
       margin-right:0;
+      height: auto;
     }
     .card-divider-right{
      margin-left:0;
-   }
-   
+     height: auto;
+   } 
+  }
+  @media (max-width: 1368px) {
+    .mat-card-md-image {
+        width: 112px !important;
+        height: 112px !important;
+        margin-left:auto;
+        display: block;
+        margin-right:auto;
+    }
+    .mat-card-title{
+      margin-left:3rem !important;
+    }
+    .wrap{
+      display: grid;
+      
+    }
+    .left{
+      padding:5%
+    }
+    .right{
+      padding:5%
+    }
+    .card-divider-left{
+      margin-right:0;
+      height: auto;
+    }
+    .card-divider-right{
+     margin-left:0;
+     height: auto;
+   } 
   }
