@@ -15,6 +15,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
       Note: Once From Value is selected it does not appear in To Value for that transaction.
       
 ~ Length Conversion :
+
   	1. Here we fetch unit from length service where we have declare an array of units.
     2. It comprise of a form which helps to convert length to different unit in which we need to select 3 parameters: 'FROM','TO','AMOUNT'
         eg: 3KM=3Kilometer= 9,842.52Foot
