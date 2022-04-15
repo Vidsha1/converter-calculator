@@ -20,10 +20,13 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatDatepickerModule} from '@angular/material/datepicker';  
 import {CalendarModule} from 'primeng/calendar';
 import {ChartModule} from 'primeng/chart';
 import {ToastModule} from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { MatNativeDateModule } from '@angular/material/core';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 
 
@@ -35,7 +38,8 @@ import { MessageService } from 'primeng/api';
     HomeComponent,
     ConverterComponent,
     CurrencyConverterComponent,
-    LengthConverterComponent
+    LengthConverterComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -52,12 +56,14 @@ import { MessageService } from 'primeng/api';
     MatSelectModule,
     MatInputModule,
     MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     ToastModule,
     CalendarModule,
     ChartModule, 
    
   ],
-  providers: [DatePipe,DecimalPipe,MessageService],
+  providers: [DatePipe,DecimalPipe,MessageService,MatNativeDateModule,MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

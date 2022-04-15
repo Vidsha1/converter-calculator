@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CurrencyService } from './currency.service';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-currency-converter',
   templateUrl: './currency-converter.component.html',
@@ -10,7 +11,9 @@ import { ErrorStateMatcher } from '@angular/material/core';
 })
 export class CurrencyConverterComponent implements OnInit {
   currency_list:any= [];
+  currency_list_new:any=[];
   temp_list:any=[];
+  temp_list2:any=[];
   rates:any=[];
   allKeys:any=[];
   fromValue:any;
@@ -25,10 +28,10 @@ export class CurrencyConverterComponent implements OnInit {
   labels:any;
   allData:any;
   graphData:any=[];
-  filterDate!: Date;
- 
+  filterDate=new Date();
+  isLoading:boolean=false;
   maxDate=new Date();
-  constructor(private fb: FormBuilder,private currencyService:CurrencyService) { }
+  constructor(private fb: FormBuilder,private currencyService:CurrencyService,private datepipe: DatePipe) { }
  
  
   ngOnInit(): void { 
@@ -46,23 +49,32 @@ export class CurrencyConverterComponent implements OnInit {
       console.log(this.rates);
       this.getKeys(this.rates);  
     }) 
+    this.setGraphData();
+    }
     //get historical data
-    this.currencyService.getHistoricalData().subscribe((data:any)=>
+    setGraphData()
+    {
+      
+      console.log(this.filterDate);
+      this.currencyService.getHistoricalData(this.filterDate).subscribe((data:any)=>
       {
         console.log(data);
         this.allData=data.rates;
         this.labels=Object.keys(data.rates)
         console.log(this.labels)
+      
         for(var key in this.allData )
         {
+          console.log(this.allData[key]);
           this.graphData.push(this.allData[key])
         }
         console.log(this.graphData)
+        this.isLoading=false;
         this.basicData = {
           labels: this.labels,
           datasets: [
               {
-                  label: 'Currency Conversion',
+                  label: 'Currency Conversion for base Euro',
                   backgroundColor: '#42A5F5',
                   data: this.graphData
               },
@@ -97,14 +109,22 @@ export class CurrencyConverterComponent implements OnInit {
       };
       })
     }
-
     get f() {
       return this.currencyForm.controls;
     }
-     /* Handle form errors in Angular 8 */
-     public errorHandling = (control: string, error: string) => {
-        return this.currencyForm.controls[control].hasError(error);
-      }
+     /* Handle date change of filter Date graph*/
+     handleDateChange(event:any)
+     {
+        this.isLoading=true;
+        console.log(event.target.value);
+        let fDate =new Date(event.target.value);
+        console.log(fDate);
+        this.filterDate=fDate;
+        this.graphData=[];
+         this.setGraphData();
+        
+
+     }
    //remove Value selected
    removeValue(e:any)
    {
@@ -115,13 +135,26 @@ export class CurrencyConverterComponent implements OnInit {
         this.temp_list.splice(index, 1);
       }  
 
-      this.currency_list=[...this.temp_list]
+      this.currency_list_new=[...this.temp_list]
+   }
+   removeValueTo(e:any)
+   {
+     console.log("In remove"+e);
+      const index=this.temp_list2.indexOf(e);
+      if(index>-1)
+      {
+        this.temp_list2.splice(index, 1);
+      }  
+
+      this.currency_list=[...this.temp_list2]
    }
   /**getting keys to show case values  */
   getKeys(r:any)
   {
       this.currency_list=Object.keys(r);
+      //assigning temp array for removing selected values
       this.temp_list=[...this.currency_list];
+      this.temp_list2=[...this.currency_list];
       console.log(this.temp_list)
   }
  
@@ -157,7 +190,7 @@ export class CurrencyConverterComponent implements OnInit {
    /**Convert destUnit  to final amt */
    finalConversion()
    {
-     if(this.currencyForm.valid)
+ 
       this.baseConversion();
       this.destConversion();
       if(this.baseConvertedValue!='' && this.dstConvertedValue!='')

@@ -24,7 +24,7 @@
                   <mat-form-field>
                     <mat-label>Select To Unit</mat-label>
                     <mat-select  formControlName="toUnit" >
-                      <mat-option  (onSelectionChange)="removeValue(c)" *ngFor="let c of currency_list" [value]="c">
+                      <mat-option  (onSelectionChange)="removeValueTo(c)" *ngFor="let c of currency_list_new" [value]="c">
                         {{c}}
                       </mat-option>
                     </mat-select>
@@ -59,26 +59,38 @@
            
         </div>
           <div class="col-sm-8">
-           <div class="card currency-details-colums-adjustment-right" style="height:100%">
-            
+           <div class="card currency-details-colums-adjustment-right" >
+              
                 <mat-toolbar>
-                  <div class="col-sm-8">
+                  <div class="col-sm-9">
                   <h2>Historic Data ( Base: EUR )</h2>
                 </div>
-                <div class="col-sm-4">
-                  <span style="left:0">  
-                    <p-calendar [(ngModel)]="filterDate" 
-                    [maxDate]="maxDate" [showIcon]="true"
-                    icon="pi pi-calendar"
-                     inputId="icon"></p-calendar>
+                <div class="col-sm-3">
+                  <span>  
+                  
+                    <input matInput readonly
+                    class="date-button"
+                    [matDatepicker]="pick2" 
+                    [max]="maxDate" 
+                    [(ngModel)]="filterDate"
+                    (dateChange)="handleDateChange($event)"
+                    >
+                    <mat-datepicker-toggle class="date-icon" matSuffix [for]="pick2">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pick2></mat-datepicker>
+                   
                 </span>
               </div>
                 </mat-toolbar>
                 <div class="chart flex">
+                  <app-loading-spinner class="spinnerClass center-aligned" 
+                  *ngIf="isLoading"></app-loading-spinner>
                 <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
                 </div>
             </div>
            </div>
           </div>
         </div>
+       
+        
     </div>
